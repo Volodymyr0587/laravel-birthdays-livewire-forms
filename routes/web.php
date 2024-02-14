@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Welcome;
+use App\Livewire\Birthdays;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Welcome::class);
+Route::get('/', Birthdays::class);

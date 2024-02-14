@@ -2,11 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Mary\Traits\Toast;
 
-class Welcome extends Component
+class Birthdays extends Component
 {
     use Toast;
 
@@ -42,11 +43,7 @@ class Welcome extends Component
      */
     public function users(): Collection
     {
-        return collect([
-            ['id' => 1, 'name' => 'Mary', 'email' => 'mary@mary-ui.com', 'age' => 23],
-            ['id' => 2, 'name' => 'Giovanna', 'email' => 'giovanna@mary-ui.com', 'age' => 7],
-            ['id' => 3, 'name' => 'Marina', 'email' => 'marina@mary-ui.com', 'age' => 5],
-        ])
+        return User::all()
             ->sortBy([[...array_values($this->sortBy)]])
             ->when($this->search, function (Collection $collection) {
                 return $collection->filter(fn(array $item) => str($item['name'])->contains($this->search, true));
@@ -55,7 +52,7 @@ class Welcome extends Component
 
     public function render()
     {
-        return view('livewire.welcome', [
+        return view('livewire.birthdays', [
             'users' => $this->users(),
             'headers' => $this->headers()
         ]);
