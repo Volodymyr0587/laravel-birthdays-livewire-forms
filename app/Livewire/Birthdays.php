@@ -17,14 +17,17 @@ class Birthdays extends Component
 
     public bool $addModal = false;
 
+    public bool $editModal = false;
+
     public BirthdayForm $form;
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
     // Delete action
-    public function delete($id): void
+    public function delete(User $user): void
     {
-        $this->warning("Will delete #$id", 'It is fake.', position: 'toast-bottom');
+        $user->delete();
+        $this->success('User deleted. ', position: 'toast-bottom');
     }
 
     // Table headers
@@ -56,6 +59,19 @@ class Birthdays extends Component
     public function save()
     {
         $this->form->store();
+        $this->addModal = false;
+    }
+
+    public function edit(User $user)
+    {
+        $this->form->fillForm($user);
+        $this->editModal = true;
+    }
+
+    public function update()
+    {
+        $this->form->update();
+        $this->editModal = false;
     }
 
     public function render()
