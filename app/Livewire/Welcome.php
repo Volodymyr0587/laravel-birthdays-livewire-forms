@@ -16,12 +16,6 @@ class Welcome extends Component
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
-    // Clear filters
-    public function clear(): void
-    {
-        $this->reset();
-        $this->success('Filters cleared.', position: 'toast-bottom');
-    }
 
     // Delete action
     public function delete($id): void
