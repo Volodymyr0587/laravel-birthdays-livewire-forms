@@ -13,9 +13,15 @@ class Birthdays extends Component
 
     public string $search = '';
 
-    public bool $drawer = false;
+    public bool $addModal = false;
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
+
+    public string $name = '';
+
+    public string $email = '';
+
+    public string $dob = '';
 
 
     // Delete action
@@ -46,8 +52,19 @@ class Birthdays extends Component
         return User::all()
             ->sortBy([[...array_values($this->sortBy)]])
             ->when($this->search, function (Collection $collection) {
-                return $collection->filter(fn(array $item) => str($item['name'])->contains($this->search, true));
+                return $collection->filter(fn(User $item) => str($item['name'])->contains($this->search, true));
             });
+    }
+
+    public function save()
+    {
+        User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'dob' => $this->dob,
+        ]);
+
+        $this->reset();
     }
 
     public function render()

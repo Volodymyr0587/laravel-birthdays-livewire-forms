@@ -5,7 +5,7 @@
             <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" />
         </x-slot:middle>
         <x-slot:actions>
-            <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" class="btn-primary" />
+            <x-button label="Add" @click="$wire.addModal = true" responsive icon="o-plus" class="btn-primary" />
         </x-slot:actions>
     </x-header>
 
@@ -17,4 +17,17 @@
             @endscope
         </x-table>
     </x-card>
+
+    <x-modal wire:model="addModal" title="Add Birthday" subtitle="" separator>
+        <x-form wire:submit="save">
+            <x-input label="Name" wire:model="name" />
+            <x-input label="Email" wire:model="email" />
+            <x-datetime label="Birthday" wire:model="dob" icon="o-calendar" />
+
+            <x-slot:actions>
+                <x-button label="Cancel" @click="$wire.addModal = false" />
+                <x-button label="Click me!" class="btn-primary" type="submit" spinner="save" />
+            </x-slot:actions>
+        </x-form>
+    </x-modal>
 </div>
