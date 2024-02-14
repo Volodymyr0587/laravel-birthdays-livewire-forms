@@ -44,4 +44,16 @@ class User extends Model
             }
         );
     }
+
+    public function birthday(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value, array $attributes): string {
+                $year = Carbon::now()->format('Y');
+                $dob = Carbon::parse($attributes['dob']);
+
+                return Carbon::parse($year . $dob->format('-m-d'))->diffForHumans();
+            }
+        );
+    }
 }

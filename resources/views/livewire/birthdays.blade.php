@@ -15,6 +15,9 @@
             @scope('cell_age', $user)
                 {{ $user->age }}
             @endscope
+            @scope('cell_birthday', $user)
+                {{ $user->birthday }}
+            @endscope
             @scope('actions', $user)
             <div class="flex space-x-2">
                 <x-button icon="o-pencil-square" wire:click="edit({{ $user['id'] }})" spinner class="btn-ghost btn-sm text-purple-500" />

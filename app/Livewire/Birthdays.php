@@ -37,6 +37,7 @@ class Birthdays extends Component
             ['key' => 'id', 'label' => '#', 'class' => 'w-1'],
             ['key' => 'name', 'label' => 'Name', 'class' => 'w-64'],
             ['key' => 'age', 'label' => 'Age', 'class' => 'w-20'],
+            ['key' => 'birthday', 'label' => 'Birthday', 'class' => 'w-64'],
             ['key' => 'email', 'label' => 'E-mail', 'sortable' => false],
         ];
     }
