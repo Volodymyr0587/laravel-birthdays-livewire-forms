@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Mary\Traits\Toast;
 
@@ -17,10 +18,13 @@ class Birthdays extends Component
 
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
 
+    #[Validate('required')]
     public string $name = '';
 
+    #[Validate('required|email')]
     public string $email = '';
 
+    #[Validate('required')]
     public string $dob = '';
 
 
@@ -58,6 +62,8 @@ class Birthdays extends Component
 
     public function save()
     {
+        $this->validate();
+
         User::create([
             'name' => $this->name,
             'email' => $this->email,
