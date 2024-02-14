@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\BirthdayForm;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Validate;
@@ -16,17 +17,9 @@ class Birthdays extends Component
 
     public bool $addModal = false;
 
+    public BirthdayForm $form;
+
     public array $sortBy = ['column' => 'name', 'direction' => 'asc'];
-
-    #[Validate('required')]
-    public string $name = '';
-
-    #[Validate('required|email')]
-    public string $email = '';
-
-    #[Validate('required')]
-    public string $dob = '';
-
 
     // Delete action
     public function delete($id): void
@@ -62,15 +55,7 @@ class Birthdays extends Component
 
     public function save()
     {
-        $this->validate();
-
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'dob' => $this->dob,
-        ]);
-
-        $this->reset();
+        $this->form->store();
     }
 
     public function render()

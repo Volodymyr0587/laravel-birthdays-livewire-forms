@@ -20,9 +20,9 @@
 
     <x-modal wire:model="addModal" title="Add Birthday" subtitle="" separator>
         <x-form wire:submit="save">
-            <x-input label="Name" wire:model="name" />
-            <x-input label="Email" wire:model="email" />
-            <x-datetime label="Birthday" wire:model="dob" icon="o-calendar" />
+            <x-input label="Name" wire:model="form.name" />
+            <x-input label="Email" wire:model="form.email" />
+            <x-datetime label="Birthday" wire:model="form.dob" icon="o-calendar" />
 
             <x-slot:actions>
                 <x-button label="Cancel" @click="$wire.addModal = false" />
