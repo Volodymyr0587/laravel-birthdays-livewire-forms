@@ -1,6 +1,6 @@
 <div>
     <!-- HEADER -->
-    <x-header title="Hello" separator progress-indicator>
+    <x-header title="Birthdays" separator progress-indicator>
         <x-slot:middle class="!justify-end">
             <x-input placeholder="Search..." wire:model.live.debounce="search" clearable icon="o-magnifying-glass" />
         </x-slot:middle>
@@ -12,6 +12,9 @@
     <!-- TABLE  -->
     <x-card>
         <x-table :headers="$headers" :rows="$users" :sort-by="$sortBy">
+            @scope('cell_age', $user)
+                {{ $user->age }}
+            @endscope
             @scope('actions', $user)
             <div class="flex space-x-2">
                 <x-button icon="o-pencil-square" wire:click="edit({{ $user['id'] }})" spinner class="btn-ghost btn-sm text-purple-500" />
